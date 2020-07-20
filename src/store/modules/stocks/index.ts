@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import { getStoreBuilder, BareActionContext } from "vuex-typex";
-import { Stock, Order, StockState } from "./types";
+import { Stock, OrderStock, StockState } from "./types";
 import { RootState } from "@/store/index";
 
 const intialState: StockState = {
@@ -19,11 +20,15 @@ const mutations = {
   setStocks(state: StockState, stocks: Stock[]) {
     state.stocks = stocks;
   },
-  randomStocks(state: StockState) {}
+  randomStocks(state: StockState) {
+    console.log(state);
+  }
 };
 
 const actions = {
-  buyStock(context: BareActionContext<StockState, RootState>, order: Order) {},
+  buyStock(_: BareActionContext<StockState, RootState>, order: OrderStock) {
+    console.log(order);
+  },
   initStocks() {
     stocks.commitSetStocks([
       { id: 1, name: "BMW", price: 110 },
@@ -36,6 +41,10 @@ const actions = {
 };
 
 const stocks = {
+  get state() {
+    return module.state();
+  },
+
   get stocks() {
     return getters.stocks();
   },

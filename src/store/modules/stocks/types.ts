@@ -4,7 +4,7 @@ export interface Stock {
   price: number;
 }
 
-export interface Order {
+export interface OrderStock {
   stockId: number;
   stockPrice: number;
   quantity: number;

@@ -28,7 +28,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { Stock, Order } from "@/store/modules/stocks/types";
+import { Stock, OrderStock } from "@/store/modules/stocks/types";
+import stocksModule from "@/store/modules/stocks";
 
 @Component
 export default class StockComponent extends Vue {
@@ -41,13 +42,13 @@ export default class StockComponent extends Vue {
   }
 
   buyStock(): void {
-    const order: Order = {
+    const order: OrderStock = {
       stockId: this.stock.id,
       stockPrice: this.stock.price,
       quantity: this.quantity
     };
 
-    console.log(order);
+    stocksModule.dispatchBuyStock(order);
     this.quantity = 0;
   }
 }
