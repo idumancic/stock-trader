@@ -23,8 +23,8 @@ const getters = {
         name: record.name
       } as Stock & { quantity: number };
     });
-  }),
-  funds: module.read(state => state.funds)
+  }, "stockPortfolio"),
+  funds: module.read(state => state.funds, "funds")
 };
 
 const mutations = {
