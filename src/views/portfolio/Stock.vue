@@ -58,6 +58,7 @@ export default class StockComponent extends Vue {
     };
 
     portofolioModule.commitSellStock(order);
+    this.quantity = 0;
   }
 }
 </script>
