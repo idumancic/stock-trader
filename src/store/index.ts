@@ -6,7 +6,7 @@ import { StockState } from "./modules/stocks/state";
 Vue.use(Vuex);
 
 export interface RootState {
-  stock: StockState
+  stock: StockState;
 }
 
-export default getStoreBuilder<RootState>().vuexStore()
+export default getStoreBuilder<RootState>().vuexStore();
