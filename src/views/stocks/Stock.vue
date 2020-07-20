@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { Stock, Order } from "@/store/modules/stocks/state";
+import { Stock, Order } from "@/store/modules/stocks/types";
 
 @Component
 export default class StockComponent extends Vue {

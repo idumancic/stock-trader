@@ -1,5 +1,5 @@
 import { getStoreBuilder, BareActionContext } from "vuex-typex";
-import { Stock, Order, StockState } from "./state";
+import { Stock, Order, StockState } from "./types";
 import { RootState } from "@/store/index";
 
 const intialState: StockState = {
