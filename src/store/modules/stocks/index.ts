@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { getStoreBuilder, BareActionContext } from "vuex-typex";
-import { Stock, OrderStock, StockState } from "./types";
-import { RootState } from "@/store/index";
 import portfolioModule from "../portfolio";
+
+import { RootState } from "@/store/index";
+import { Stock, OrderStock, StockState } from "./types";
 
 const intialState: StockState = {
   stocks: []

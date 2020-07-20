@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { getStoreBuilder, BareActionContext } from "vuex-typex";
-import { RootState } from "@/store/index";
+import stocksModule from "../stocks";
 
+import { RootState } from "@/store/index";
 import { PortfolioState } from "./types";
 import { OrderStock, Stock } from "../stocks/types";
 
@@ -15,12 +16,12 @@ const module = getStoreBuilder<RootState>().module("portfolio", initialState);
 const getters = {
   stockPortfolio: module.read((state, getters) => {
     return state.portfolio.map(x => {
-      const record = getters.stocks.find((y: Stock) => y.id === x.stockId);
+      const record = stocksModule.stocks.find((y: Stock) => y.id === x.stockId);
       return {
         id: x.stockId,
         quantity: x.quantity,
-        price: record.price,
-        name: record.name
+        price: record?.price,
+        name: record?.name
       } as Stock & { quantity: number };
     });
   }, "stockPortfolio"),
