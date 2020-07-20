@@ -6,10 +6,12 @@
       header-text-variant="white"
     >
       <template #header>
-        <h5 class="font-weight-bold mb-0">
+        <h5 class="font-weight-bold mb-0 float-left">
           {{ stock.name }}
-          <small>(Price: {{ stock.price }})</small>
         </h5>
+        <b-badge class="float-right" style="margin-top: 0.2rem;">
+          Price: {{ stock.price }}
+        </b-badge>
       </template>
       <div class="float-left">
         <b-input

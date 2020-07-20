@@ -6,10 +6,13 @@
       header-text-variant="white"
     >
       <template #header>
-        <h5 class="font-weight-bold mb-0">
+        <h5 class="font-weight-bold mb-0 float-left">
           {{ stock.name }}
-          <small>(Price: {{ stock.price }})</small>
         </h5>
+        <div class="float-right" style="margin-top: -0.1rem;">
+          <b-badge class="mr-1">Price: {{ stock.price }} </b-badge>
+          <b-badge>Quantity: {{ stock.quantity }}</b-badge>
+        </div>
       </template>
       <div class="float-left">
         <b-input
@@ -21,10 +24,11 @@
       <div class="float-right">
         <b-button
           variant="success"
-          @click="buyStock"
-          :disabled="isBuyButtonDisabled"
-          >Buy</b-button
+          @click="sellStock"
+          :disabled="isSellButtonDisabled"
         >
+          Sell
+        </b-button>
       </div>
     </b-card>
   </b-col>
@@ -32,28 +36,28 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { Stock, OrderStock } from "@/store/modules/stocks/types";
-import stocksModule from "@/store/modules/stocks";
+import { StockPortfolio } from "@/store/modules/portfolio/types";
+import { OrderStock } from "@/store/modules/stocks/types";
+import portofolioModule from "@/store/modules/portfolio";
 
 @Component
 export default class StockComponent extends Vue {
-  @Prop({ required: true }) stock!: Stock;
+  @Prop({ required: true }) stock!: StockPortfolio;
 
   quantity = 0;
 
-  get isBuyButtonDisabled(): boolean {
+  get isSellButtonDisabled(): boolean {
     return this.quantity <= 0;
   }
 
-  buyStock(): void {
+  sellStock(): void {
     const order: OrderStock = {
       stockId: this.stock.id,
       stockPrice: this.stock.price,
       quantity: this.quantity
     };
 
-    stocksModule.dispatchBuyStock(order);
-    this.quantity = 0;
+    portofolioModule.commitSellStock(order);
   }
 }
 </script>
