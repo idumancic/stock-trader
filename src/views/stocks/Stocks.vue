@@ -6,20 +6,17 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import Stock, { IStock } from "./Stock.vue";
+import stocksModule from "@/store/modules/stocks";
+import StockComponent from "./Stock.vue";
 
 @Component({
   components: {
-    Stock
+    stock: StockComponent
   }
 })
 export default class Stocks extends Vue {
-  stocks: IStock[] = [
-    { id: 1, name: "BMW", price: 110 },
-    { id: 2, name: "Google", price: 200 },
-    { id: 3, name: "Apple", price: 250 },
-    { id: 4, name: "Twitter", price: 8 },
-    { id: 5, name: "Tesla", price: 95 }
-  ];
+  get stocks() {
+    return stocksModule.stocks;
+  }
 }
 </script>

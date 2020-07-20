@@ -28,25 +28,20 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-
-export interface IStock {
-  id: number;
-  name: string;
-  price: number;
-}
+import { Stock, Order } from "@/store/modules/stocks/state";
 
 @Component
-export default class Stock extends Vue {
-  @Prop({ required: true }) stock!: IStock;
+export default class StockComponent extends Vue {
+  @Prop({ required: true }) stock!: Stock;
 
   quantity = 0;
 
-  get isBuyButtonDisabled() {
+  get isBuyButtonDisabled(): boolean {
     return this.quantity <= 0 || !Number.isInteger(this.quantity);
   }
 
   buyStock(): void {
-    const order = {
+    const order: Order = {
       stockId: this.stock.id,
       stockPrice: this.stock.price,
       quantity: this.quantity

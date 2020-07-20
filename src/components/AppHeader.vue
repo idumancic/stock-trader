@@ -4,8 +4,8 @@
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item to="/portfolio" active-class="active">Portfolio</b-nav-item>
-        <b-nav-item to="/stocks" active-class="active">Stocks</b-nav-item>
+        <b-nav-item to="/portfolio">Portfolio</b-nav-item>
+        <b-nav-item to="/stocks">Stocks</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->

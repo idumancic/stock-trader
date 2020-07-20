@@ -10,6 +10,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import AppHeader from "./components/AppHeader.vue";
 import AppContent from "./components/AppContent.vue";
+import stocksModule from "@/store/modules/stocks";
 
 @Component({
   components: {
@@ -17,7 +18,11 @@ import AppContent from "./components/AppContent.vue";
     AppContent
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  created() {
+    stocksModule.dispatchInitStocks();
+  }
+}
 </script>
 
 <style>
