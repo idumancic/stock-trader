@@ -1,8 +1,8 @@
 <template>
   <b-col sm="12" md="6" lg="4" xl="4" class="mb-3">
     <b-card
-      border-variant="dark"
-      header-bg-variant="dark"
+      border-variant="primary"
+      header-bg-variant="primary"
       header-text-variant="white"
     >
       <template #header>
@@ -10,8 +10,10 @@
           {{ stock.name }}
         </h5>
         <div class="float-right" style="margin-top: -0.1rem;">
-          <b-badge class="mr-1">Price: {{ stock.price }} </b-badge>
-          <b-badge>Quantity: {{ stock.quantity }}</b-badge>
+          <b-badge variant="light" class="mr-1">
+            Price: ${{ stock.price }}
+          </b-badge>
+          <b-badge variant="light">Quantity: {{ stock.quantity }}</b-badge>
         </div>
       </template>
       <div class="float-left">
@@ -23,7 +25,7 @@
       </div>
       <div class="float-right">
         <b-button
-          variant="success"
+          variant="danger"
           @click="sellStock"
           :disabled="isSellButtonDisabled"
         >
