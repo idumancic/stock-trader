@@ -30,6 +30,12 @@ const getters = {
 
 const mutations = {
   buyStock(state: PortfolioState, order: OrderStock) {
+    const totalPrice = order.stockPrice * order.quantity;
+
+    if (totalPrice > state.funds) {
+      throw new Error("Can't buy stocks, insufficient funds!");
+    }
+
     const record = state.portfolio.find(x => x.stockId === order.stockId);
 
     if (record) {
@@ -41,13 +47,15 @@ const mutations = {
       });
     }
 
-    state.funds -= order.stockPrice * order.quantity;
+    state.funds -= totalPrice;
   },
   sellStock(state: PortfolioState, order: OrderStock) {
     const record = state.portfolio.find(x => x.stockId === order.stockId);
 
     if (!record) {
       throw new Error("Stock not found");
+    } else if (order.quantity > record.quantity) {
+      throw new Error("Can't sell more stocks then you have.");
     }
 
     if (record.quantity > order.quantity) {

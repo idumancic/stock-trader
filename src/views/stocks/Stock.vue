@@ -1,5 +1,5 @@
 <template>
-  <b-col sm="12" md="6" lg="4" xl="4" class="mb-3">
+  <b-col sm="12" md="4" lg="3" xl="3" class="mb-3">
     <b-card
       border-variant="dark"
       header-bg-variant="dark"
@@ -10,7 +10,7 @@
           {{ stock.name }}
         </h5>
         <b-badge variant="" class="float-right" style="margin-top: 0.2rem;">
-          Price: ${{ stock.price }}
+          Price: {{ stock.price | currency }}
         </b-badge>
       </template>
       <div class="float-left">

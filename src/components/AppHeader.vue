@@ -15,6 +15,9 @@
           <b-dropdown-item href="#">Save Data</b-dropdown-item>
           <b-dropdown-item href="#">Load Data</b-dropdown-item>
         </b-nav-item-dropdown>
+        <b-nav-text class="ml-4">
+          Funds: <strong>{{ funds | currency }}</strong>
+        </b-nav-text>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -23,9 +26,14 @@
 <script>
 import Vue from "vue";
 import Component from "vue-class-component";
+import portfolioModule from "@/store/modules/portfolio";
 
 @Component
-export default class AppHeader extends Vue {}
+export default class AppHeader extends Vue {
+  get funds() {
+    return portfolioModule.funds;
+  }
+}
 </script>
 
 <style></style>
