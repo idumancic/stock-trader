@@ -56,7 +56,7 @@ export default class StockComponent extends Vue {
   sellStock(): void {
     const order: OrderStock = {
       stockId: this.stock.id,
-      stockPrice: this.stock.price,
+      stockPrice: this.stock.price ?? 0,
       quantity: this.quantity
     };
 
