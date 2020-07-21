@@ -10,7 +10,7 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-item href="#">End Day</b-nav-item>
+        <b-nav-item @click="onEndDayClick">End Day</b-nav-item>
         <b-nav-item-dropdown text="Save & Load" right>
           <b-dropdown-item href="#">Save Data</b-dropdown-item>
           <b-dropdown-item href="#">Load Data</b-dropdown-item>
@@ -23,15 +23,20 @@
   </b-navbar>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
 import portfolioModule from "@/store/modules/portfolio";
+import stocksModule from "@/store/modules/stocks";
 
 @Component
 export default class AppHeader extends Vue {
   get funds() {
     return portfolioModule.funds;
+  }
+
+  onEndDayClick() {
+    stocksModule.dispatchRandomizeStocks();
   }
 }
 </script>

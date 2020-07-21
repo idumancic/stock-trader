@@ -23,7 +23,9 @@ const mutations = {
     state.stocks = stocks;
   },
   randomStocks(state: StockState) {
-    console.log(state);
+    state.stocks.forEach((stock: Stock) => {
+      stock.price = Math.round(stock.price * (1 + Math.random() - 0.5));
+    });
   }
 };
 
@@ -39,6 +41,9 @@ const actions = {
       { id: 4, name: "Twitter", price: 8 },
       { id: 5, name: "Tesla", price: 95 }
     ]);
+  },
+  randomizeStocks() {
+    stocks.commitRandomStocks();
   }
 };
 
@@ -55,7 +60,8 @@ const stocks = {
   commitRandomStocks: module.commit(mutations.randomStocks),
 
   dispatchBuyStock: module.dispatch(actions.buyStock),
-  dispatchInitStocks: module.dispatch(actions.initStocks)
+  dispatchInitStocks: module.dispatch(actions.initStocks),
+  dispatchRandomizeStocks: module.dispatch(actions.randomizeStocks)
 };
 
 export default stocks;
