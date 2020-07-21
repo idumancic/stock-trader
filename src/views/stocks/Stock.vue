@@ -18,6 +18,7 @@
           type="number"
           placeholder="Quantity"
           v-model.number="quantity"
+          :max="maxStockQuantity"
         />
       </div>
       <div class="float-right">
@@ -36,6 +37,7 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { Stock, OrderStock } from "@/store/modules/stocks/types";
 import stocksModule from "@/store/modules/stocks";
+import portfolioModule from "@/store/modules/portfolio";
 
 @Component
 export default class StockComponent extends Vue {
@@ -45,6 +47,10 @@ export default class StockComponent extends Vue {
 
   get isBuyButtonDisabled(): boolean {
     return this.quantity <= 0;
+  }
+
+  get maxStockQuantity(): number {
+    return Math.round(portfolioModule.funds / this.stock.price);
   }
 
   buyStock(): void {

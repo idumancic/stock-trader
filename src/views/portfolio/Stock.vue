@@ -21,6 +21,7 @@
           type="number"
           placeholder="Quantity"
           v-model.number="quantity"
+          :max="stock.quantity"
         />
       </div>
       <div class="float-right">
