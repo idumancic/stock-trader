@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { getStoreBuilder, BareActionContext } from "vuex-typex";
+import stockTraderService from "@/services";
 import stocksModule from "../stocks";
 
 import { RootState } from "@/store/index";
@@ -78,6 +79,21 @@ const actions = {
     order: OrderStock
   ) {
     portofolio.commitSellStock(order);
+  },
+  save() {
+    stockTraderService.saveData({
+      funds: portofolio.funds,
+      stockPortfolio: portofolio.stockPortfolio,
+      stocks: stocksModule.stocks
+    });
+  },
+  async load() {
+    const { data } = await stockTraderService.loadData();
+    stocksModule.commitSetStocks(data.stocks);
+    portofolio.commitSetPortfolio({
+      funds: data.funds,
+      stocks: data.stockPortfolio
+    });
   }
 };
 
@@ -98,7 +114,9 @@ const portofolio = {
   commitSellStock: module.commit(mutations.sellStock),
   commitSetPortfolio: module.commit(mutations.setPortfolio),
 
-  dispatchSellStock: module.dispatch(actions.sellStock)
+  dispatchSellStock: module.dispatch(actions.sellStock),
+  dispatchSave: module.dispatch(actions.save),
+  dispatchLoad: module.dispatch(actions.load)
 };
 
 export default portofolio;

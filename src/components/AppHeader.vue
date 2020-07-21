@@ -26,7 +26,6 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import stockTraderService from "@/services";
 import portfolioModule from "@/store/modules/portfolio";
 import stocksModule from "@/store/modules/stocks";
 
@@ -41,20 +40,11 @@ export default class AppHeader extends Vue {
   }
 
   onSaveDataClick() {
-    stockTraderService.saveData({
-      funds: portfolioModule.funds,
-      stockPortfolio: portfolioModule.stockPortfolio,
-      stocks: stocksModule.stocks
-    });
+    portfolioModule.dispatchSave();
   }
 
-  async onLoadDataClick() {
-    const { data } = await stockTraderService.loadData();
-    stocksModule.commitSetStocks(data.stocks);
-    portfolioModule.commitSetPortfolio({
-      funds: data.funds,
-      stocks: data.stockPortfolio
-    });
+  onLoadDataClick() {
+    portfolioModule.dispatchLoad();
   }
 }
 </script>
