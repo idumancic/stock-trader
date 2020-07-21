@@ -1,6 +1,11 @@
 <template>
-  <b-row>
+  <b-row v-if="stocks.length > 0">
     <stock v-for="stock in stocks" :key="stock.id" :stock="stock"></stock>
+  </b-row>
+  <b-row v-else>
+    <b-col xl="12" class="text-center">
+      <h1>No stocks. Portfolio is empty :/</h1>
+    </b-col>
   </b-row>
 </template>
 
