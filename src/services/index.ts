@@ -6,7 +6,8 @@ const instance = axios.create({
 });
 
 const endpoints: StockTraderEndpoints = {
-  saveData: data => instance.put("data.json", data)
+  saveData: data => instance.put("data.json", data),
+  loadData: () => instance.get("data.json")
 };
 
 export default endpoints;

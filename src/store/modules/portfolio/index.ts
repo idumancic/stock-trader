@@ -3,26 +3,26 @@ import { getStoreBuilder, BareActionContext } from "vuex-typex";
 import stocksModule from "../stocks";
 
 import { RootState } from "@/store/index";
-import { PortfolioState } from "./types";
+import { PortfolioState, StockPortfolio } from "./types";
 import { OrderStock, Stock } from "../stocks/types";
 
 const initialState: PortfolioState = {
   funds: 10000,
-  portfolio: []
+  stocks: []
 };
 
 const module = getStoreBuilder<RootState>().module("portfolio", initialState);
 
 const getters = {
-  stockPortfolio: module.read((state, getters) => {
-    return state.portfolio.map(x => {
-      const record = stocksModule.stocks.find((y: Stock) => y.id === x.stockId);
+  stockPortfolio: module.read(state => {
+    return state.stocks.map(x => {
+      const record = stocksModule.stocks.find((y: Stock) => y.id === x.id);
       return {
-        id: x.stockId,
+        id: x.id,
         quantity: x.quantity,
         price: record?.price,
         name: record?.name
-      } as Stock & { quantity: number };
+      } as StockPortfolio;
     });
   }, "stockPortfolio"),
   funds: module.read(state => state.funds, "funds")
@@ -36,13 +36,13 @@ const mutations = {
       throw new Error("Can't buy stocks, insufficient funds!");
     }
 
-    const record = state.portfolio.find(x => x.stockId === order.stockId);
+    const record = state.stocks.find(x => x.id === order.stockId);
 
     if (record) {
       record.quantity += order.quantity;
     } else {
-      state.portfolio.push({
-        stockId: order.stockId,
+      state.stocks.push({
+        id: order.stockId,
         quantity: order.quantity
       });
     }
@@ -50,7 +50,7 @@ const mutations = {
     state.funds -= totalPrice;
   },
   sellStock(state: PortfolioState, order: OrderStock) {
-    const record = state.portfolio.find(x => x.stockId === order.stockId);
+    const record = state.stocks.find(x => x.id === order.stockId);
 
     if (!record) {
       throw new Error("Stock not found");
@@ -61,10 +61,14 @@ const mutations = {
     if (record.quantity > order.quantity) {
       record.quantity -= order.quantity;
     } else {
-      state.portfolio.splice(state.portfolio.indexOf(record), 1);
+      state.stocks.splice(state.stocks.indexOf(record), 1);
     }
 
     state.funds += order.stockPrice * order.quantity;
+  },
+  setPortfolio(state: PortfolioState, payload: PortfolioState) {
+    state.funds = payload.funds;
+    state.stocks = payload.stocks;
   }
 };
 
@@ -92,6 +96,7 @@ const portofolio = {
 
   commitBuyStock: module.commit(mutations.buyStock),
   commitSellStock: module.commit(mutations.sellStock),
+  commitSetPortfolio: module.commit(mutations.setPortfolio),
 
   dispatchSellStock: module.dispatch(actions.sellStock)
 };

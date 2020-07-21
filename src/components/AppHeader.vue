@@ -48,8 +48,13 @@ export default class AppHeader extends Vue {
     });
   }
 
-  onLoadDataClick() {
-    console.log("data");
+  async onLoadDataClick() {
+    const { data } = await stockTraderService.loadData();
+    stocksModule.commitSetStocks(data.stocks);
+    portfolioModule.commitSetPortfolio({
+      funds: data.funds,
+      stocks: data.stockPortfolio
+    });
   }
 }
 </script>
