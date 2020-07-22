@@ -5,23 +5,31 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item to="/portfolio">Portfolio</b-nav-item>
-          <b-nav-item to="/stocks">Stocks</b-nav-item>
+          <b-nav-item to="/portfolio">
+            <i class="fas fa-chart-pie"></i>Portfolio
+          </b-nav-item>
+          <b-nav-item to="/stocks">
+            <i class="fas fa-chart-line"></i>Stocks
+          </b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-item @click="onEndDayClick">End Day</b-nav-item>
-          <b-nav-item-dropdown text="Save & Load" right>
+          <b-nav-item @click="onEndDayClick">
+            <i class="fas fa-calendar-day"></i>End Day
+          </b-nav-item>
+          <b-nav-item-dropdown right>
+            <template #text><i class="fas fa-cog"></i>Settings </template>
             <b-dropdown-item @click="onSaveDataClick">
-              Save Data
+              <i class="fas fa-cloud-upload-alt"></i>Save Data
             </b-dropdown-item>
             <b-dropdown-item @click="onLoadDataClick">
-              Load Data
+              <i class="fas fa-cloud-download-alt"></i>Load Data
             </b-dropdown-item>
           </b-nav-item-dropdown>
-          <b-nav-text class="ml-xl-4 ml-lg-4 ml-md-4">
-            Funds: <strong>{{ funds | currency }}</strong>
+          <b-nav-text class="ml-xl-4 ml-lg-4">
+            <i class="fas fa-wallet"></i>Funds:
+            <strong>{{ funds | currency }}</strong>
           </b-nav-text>
         </b-navbar-nav>
       </b-collapse>

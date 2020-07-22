@@ -1,5 +1,5 @@
 <template>
-  <b-col sm="12" md="6" lg="4" xl="4" class="mb-3">
+  <b-col sm="12" md="12" lg="6" xl="4" class="mb-3">
     <b-card
       border-variant="dark"
       header-bg-variant="dark"
@@ -26,8 +26,9 @@
           variant="success"
           @click="buyStock"
           :disabled="isBuyButtonDisabled"
-          >Buy</b-button
         >
+          <i class="fas fa-coins"></i>Buy
+        </b-button>
       </div>
     </b-card>
   </b-col>

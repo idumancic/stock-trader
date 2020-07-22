@@ -38,4 +38,8 @@ html,
   color: #2c3e50;
   font-size: 16px;
 }
+
+i {
+  margin-right: 0.5rem;
+}
 </style>
