@@ -8,8 +8,8 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import AppHeader from "./components/AppHeader.vue";
-import AppContent from "./components/AppContent.vue";
+import AppHeader from "./layout/AppHeader.vue";
+import AppContent from "./layout/AppContent.vue";
 import stocksModule from "@/store/modules/stocks";
 
 @Component({
