@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid class="p-3">
+  <b-container class="p-3">
     <transition
       name="fade"
       mode="out-in"

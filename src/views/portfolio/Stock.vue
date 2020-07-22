@@ -1,5 +1,5 @@
 <template>
-  <b-col sm="12" md="6" lg="4" xl="3" class="mb-3">
+  <b-col sm="12" md="6" lg="4" xl="4" class="mb-3">
     <b-card
       border-variant="primary"
       header-bg-variant="primary"
