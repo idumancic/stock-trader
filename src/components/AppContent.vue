@@ -47,7 +47,7 @@ export default class AppContent extends Vue {
 }
 </script>
 
-<style>
+<style scoped>
 .fade-enter-active,
 .fade-leave-active {
   transition-duration: 0.3s;
