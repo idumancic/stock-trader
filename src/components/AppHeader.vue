@@ -13,14 +13,14 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item @click="onEndDayClick">End Day</b-nav-item>
           <b-nav-item-dropdown text="Save & Load" right>
-            <b-dropdown-item @click="onSaveDataClick"
-              >Save Data</b-dropdown-item
-            >
-            <b-dropdown-item @click="onLoadDataClick"
-              >Load Data</b-dropdown-item
-            >
+            <b-dropdown-item @click="onSaveDataClick">
+              Save Data
+            </b-dropdown-item>
+            <b-dropdown-item @click="onLoadDataClick">
+              Load Data
+            </b-dropdown-item>
           </b-nav-item-dropdown>
-          <b-nav-text class="ml-4">
+          <b-nav-text class="ml-xl-4 ml-lg-4 ml-md-4">
             Funds: <strong>{{ funds | currency }}</strong>
           </b-nav-text>
         </b-navbar-nav>
