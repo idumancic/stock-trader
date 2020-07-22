@@ -15,25 +15,26 @@
           </b-badge>
         </slot>
       </template>
-      <div class="float-left">
+      <b-input-group>
         <b-input
           type="number"
           placeholder="Quantity"
           v-model.number="quantity"
           :max="maxQuantity"
         />
-      </div>
-      <div class="float-right">
-        <b-button
-          :variant="actionVariant"
-          @click="onActionClick"
-          :disabled="isActionButtonDisabled"
-        >
-          <slot name="stock-action">
-            Action
-          </slot>
-        </b-button>
-      </div>
+
+        <b-input-group-append>
+          <b-button
+            :variant="actionVariant"
+            @click="onActionClick"
+            :disabled="isActionButtonDisabled"
+          >
+            <slot name="stock-action">
+              Action
+            </slot>
+          </b-button>
+        </b-input-group-append>
+      </b-input-group>
     </b-card>
   </b-col>
 </template>
