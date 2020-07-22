@@ -4,7 +4,7 @@
   </b-row>
   <b-row v-else>
     <b-col xl="12" class="text-center">
-      <h1>No stocks. Portfolio is empty :/</h1>
+      <span class="no-portfolio">Portfolio is empty &#128533;</span>
     </b-col>
   </b-row>
 </template>
@@ -25,3 +25,10 @@ export default class Stocks extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.no-portfolio {
+  font-size: 200%;
+  font-weight: 300;
+}
+</style>

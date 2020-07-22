@@ -1,5 +1,5 @@
 <template>
-  <b-container class="p-3">
+  <b-container class="p-4 my-4 bg-light rounded shadow">
     <transition
       name="fade"
       mode="out-in"
