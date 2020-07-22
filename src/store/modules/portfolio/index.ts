@@ -69,7 +69,7 @@ const mutations = {
   },
   setPortfolio(state: PortfolioState, payload: PortfolioState) {
     state.funds = payload.funds;
-    state.stocks = payload.stocks;
+    state.stocks = payload.stocks || [];
   }
 };
 
