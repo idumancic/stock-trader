@@ -34,8 +34,8 @@
 import { Vue, Component } from "vue-property-decorator";
 import StockComponent from "@/components/BaseStock.vue";
 
+import { portfolio } from "@/store/modules";
 import { OrderStock } from "@/store/modules/stocks/types";
-import portfolioModule from "@/store/modules/portfolio";
 
 @Component({
   components: {
@@ -44,11 +44,11 @@ import portfolioModule from "@/store/modules/portfolio";
 })
 export default class Stocks extends Vue {
   get stocks() {
-    return portfolioModule.stockPortfolio;
+    return portfolio.stockPortfolio;
   }
 
   onSellAction(order: OrderStock) {
-    portfolioModule.commitSellStock(order);
+    portfolio.commitSellStock(order);
   }
 }
 </script>

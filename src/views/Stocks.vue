@@ -16,9 +16,8 @@
 import { Vue, Component } from "vue-property-decorator";
 import StockComponent from "@/components/BaseStock.vue";
 
-import stocksModule from "@/store/modules/stocks";
+import { stocks, portfolio } from "@/store/modules";
 import { Stock, OrderStock } from "@/store/modules/stocks/types";
-import portfolioModule from "@/store/modules/portfolio";
 
 @Component({
   components: {
@@ -27,7 +26,7 @@ import portfolioModule from "@/store/modules/portfolio";
 })
 export default class Stocks extends Vue {
   get stocks() {
-    return stocksModule.stocks.map(stock => {
+    return stocks.stocks.map(stock => {
       const temp: {
         id: number;
         price: number;
@@ -35,7 +34,7 @@ export default class Stocks extends Vue {
         maxQuantity: number;
       } = {
         ...stock,
-        maxQuantity: Math.floor(portfolioModule.funds / stock.price)
+        maxQuantity: Math.floor(portfolio.funds / stock.price)
       };
 
       return temp as Stock & { maxQuantity: number };
@@ -43,7 +42,7 @@ export default class Stocks extends Vue {
   }
 
   onBuyAction(order: OrderStock) {
-    stocksModule.dispatchBuyStock(order);
+    stocks.dispatchBuyStock(order);
   }
 }
 </script>

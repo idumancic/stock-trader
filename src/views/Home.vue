@@ -12,12 +12,12 @@
 <script>
 import Vue from "vue";
 import Component from "vue-class-component";
-import portfolioModule from "@/store/modules/portfolio";
+import { portfolio } from "@/store/modules";
 
 @Component
 export default class Home extends Vue {
   get funds() {
-    return portfolioModule.funds;
+    return portfolio.funds;
   }
 }
 </script>

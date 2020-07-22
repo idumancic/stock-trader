@@ -27,7 +27,7 @@
               <i class="fas fa-cloud-download-alt"></i>Load Data
             </b-dropdown-item>
           </b-nav-item-dropdown>
-          <b-nav-text class="ml-xl-4 ml-lg-4">
+          <b-nav-text class="ml-xl-4 ml-lg-4 d-none d-lg-block d-xl-block">
             <i class="fas fa-wallet"></i>Funds:
             <strong>{{ funds | currency }}</strong>
           </b-nav-text>

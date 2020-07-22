@@ -1,30 +1,44 @@
 <template>
-  <b-container class="p-4 my-4 bg-light rounded shadow">
-    <b-overlay :show="show" rounded="sm">
-      <transition
-        name="fade"
-        mode="out-in"
-        @beforeLeave="beforeLeave"
-        @enter="enter"
-        @afterEnter="afterEnter"
-      >
-        <router-view></router-view>
-      </transition>
-    </b-overlay>
-  </b-container>
+  <div>
+    <b-container class="my-4 d-lg-none d-xl-none">
+      <b-row>
+        <b-col class="text-right">
+          <i class="fas fa-wallet"></i>Funds:
+          <strong>{{ funds | currency }}</strong>
+        </b-col>
+      </b-row>
+    </b-container>
+    <b-container class="p-4 my-4 bg-light rounded shadow">
+      <b-overlay :show="show" rounded="sm">
+        <transition
+          name="fade"
+          mode="out-in"
+          @beforeLeave="beforeLeave"
+          @enter="enter"
+          @afterEnter="afterEnter"
+        >
+          <router-view></router-view>
+        </transition>
+      </b-overlay>
+    </b-container>
+  </div>
 </template>
 
 <script>
 import Vue from "vue";
 import Component from "vue-class-component";
-import globalModule from "@/store/modules/global";
+import { portfolio, global } from "@/store/modules";
 
 @Component
 export default class AppContent extends Vue {
   prevHeight = 0;
 
   get show() {
-    return globalModule.isLoading;
+    return global.isLoading;
+  }
+
+  get funds() {
+    return portfolio.funds;
   }
 
   beforeLeave(element) {
