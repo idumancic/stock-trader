@@ -1,6 +1,11 @@
-import axios from "axios";
-import globalModule from "@/store/modules/global";
-import { StockTraderEndpoints } from "./types";
+import axios, { AxiosResponse } from "axios";
+import { StockPortfolioData } from "@/types";
+import { global } from "@modules";
+
+interface StockTraderEndpoints {
+  saveData(data: StockPortfolioData): void;
+  loadData(): Promise<AxiosResponse<StockPortfolioData>>;
+}
 
 const instance = axios.create({
   baseURL: "https://stock-trader-61fc7.firebaseio.com/"
@@ -11,7 +16,7 @@ const source = CancelToken.source();
 
 instance.interceptors.request.use(
   config => {
-    globalModule.commitSetIsLoading(true);
+    global.commitSetIsLoading(true);
     return config;
   },
   error => {
@@ -19,13 +24,13 @@ instance.interceptors.request.use(
       return;
     }
 
-    globalModule.commitSetIsLoading(false);
+    global.commitSetIsLoading(false);
     return Promise.reject(error);
   }
 );
 
 instance.interceptors.response.use(response => {
-  globalModule.commitSetIsLoading(false);
+  global.commitSetIsLoading(false);
   return response;
 });
 

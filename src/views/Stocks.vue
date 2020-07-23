@@ -17,7 +17,7 @@ import { Vue, Component } from "vue-property-decorator";
 import StockComponent from "@/components/BaseStock.vue";
 
 import { stocks, portfolio } from "@modules";
-import { Stock, OrderStock } from "@/store/modules/stocks/types";
+import { Stock, OrderStock } from "@/types";
 
 @Component({
   components: {

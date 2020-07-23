@@ -1,6 +1,9 @@
-import { RootState } from "@/store/index";
 import { getStoreBuilder } from "vuex-typex";
-import { GlobalState } from "./types";
+import { RootState } from "@/store";
+
+export interface GlobalState {
+  isLoading: boolean;
+}
 
 const initialState: GlobalState = {
   isLoading: false

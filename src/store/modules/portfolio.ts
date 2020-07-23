@@ -1,11 +1,15 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { getStoreBuilder, BareActionContext } from "vuex-typex";
-import stockTraderService from "@/services";
-import stocksModule from "../stocks";
+import { RootState } from "@/store";
+import { StockPortfolio, OrderStock, Stock } from "@/types";
 
-import { RootState } from "@/store/index";
-import { PortfolioState, StockPortfolio } from "./types";
-import { OrderStock, Stock } from "../stocks/types";
+import stockTraderService from "@/services";
+import stocksModule from "./stocks";
+
+export interface PortfolioState {
+  funds: number;
+  stocks: StockPortfolio[];
+}
 
 const initialState: PortfolioState = {
   funds: 10000,

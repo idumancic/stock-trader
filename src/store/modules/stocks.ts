@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { getStoreBuilder, BareActionContext } from "vuex-typex";
-import portfolioModule from "../portfolio";
+import { RootState } from "@/store";
+import { Stock, OrderStock } from "@/types";
+import portfolio from "./portfolio";
 
-import { RootState } from "@/store/index";
-import { Stock, OrderStock, StockState } from "./types";
+export interface StockState {
+  stocks: Stock[];
+}
 
 const intialState: StockState = {
   stocks: []
@@ -31,7 +34,7 @@ const mutations = {
 
 const actions = {
   buyStock(_: BareActionContext<StockState, RootState>, order: OrderStock) {
-    portfolioModule.commitBuyStock(order);
+    portfolio.commitBuyStock(order);
   },
   initStocks() {
     stocks.commitSetStocks([
