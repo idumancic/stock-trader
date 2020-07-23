@@ -12,7 +12,7 @@
 <script>
 import Vue from "vue";
 import Component from "vue-class-component";
-import { portfolio } from "@/store/modules";
+import { portfolio } from "@modules";
 
 @Component
 export default class Home extends Vue {

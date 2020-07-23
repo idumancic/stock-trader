@@ -34,7 +34,7 @@
 import { Vue, Component } from "vue-property-decorator";
 import StockComponent from "@/components/BaseStock.vue";
 
-import { portfolio } from "@/store/modules";
+import { portfolio } from "@modules";
 import { OrderStock } from "@/store/modules/stocks/types";
 
 @Component({

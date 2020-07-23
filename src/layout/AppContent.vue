@@ -27,7 +27,7 @@
 <script>
 import Vue from "vue";
 import Component from "vue-class-component";
-import { portfolio, global } from "@/store/modules";
+import { portfolio, global } from "@modules";
 
 @Component
 export default class AppContent extends Vue {
