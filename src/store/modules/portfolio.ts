@@ -92,7 +92,7 @@ const actions = {
     });
   },
   async load() {
-    const { data } = await stockTraderService.loadData();
+    const data = await stockTraderService.loadData();
     stocksModule.commitSetStocks(data.stocks);
     portofolio.commitSetPortfolio({
       funds: data.funds,
