@@ -45,12 +45,12 @@ import { Stock, OrderStock, StockPortfolio } from "@/types";
 
 @Component
 export default class StockComponent extends Vue {
-  @Prop({ required: true }) stock!: Stock | StockPortfolio;
-  @Prop({ default: "dark" }) colorVariant!: string;
-  @Prop({ default: "success" }) actionVariant!: string;
-  @Prop() maxQuantity!: number;
+  @Prop({ required: true }) readonly stock!: Stock | StockPortfolio;
+  @Prop({ default: "dark" }) readonly colorVariant!: string;
+  @Prop({ default: "success" }) readonly actionVariant!: string;
+  @Prop() readonly maxQuantity!: number;
 
-  quantity = 0;
+  private quantity = 0;
 
   get isActionButtonDisabled(): boolean {
     return this.quantity <= 0 || this.quantity > this.maxQuantity;
