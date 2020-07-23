@@ -1,7 +1,13 @@
-import axios, { AxiosInstance, AxiosResponse, CancelToken } from "axios";
+import axios, {
+  AxiosInstance,
+  AxiosResponse,
+  AxiosError,
+  CancelToken
+} from "axios";
 
 declare module "axios" {
-  type AxiosResponse<T = any> = Promise<T>;
+  // eslint-disable-next-line
+  interface AxiosResponse<T> extends Promise<T> {}
 }
 
 abstract class HttpClient {
@@ -44,7 +50,7 @@ abstract class HttpClient {
     );
   }
 
-  protected handleError = (error: any) => Promise.reject(error);
+  protected handleError = (error: AxiosError) => Promise.reject(error);
 }
 
 export default HttpClient;

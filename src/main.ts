@@ -4,13 +4,14 @@ import "reflect-metadata";
 import Vue from "vue";
 
 import "./plugins/bootstrap-vue";
+import { BvModal } from "bootstrap-vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
 Vue.config.productionTip = false;
 
-Vue.config.errorHandler = (err: Error, vm: Vue & { $bvToast: any }) => {
+Vue.config.errorHandler = (err: Error, vm: Vue & { $bvToast: BvModal }) => {
   console.log(err.stack);
   vm.$bvToast.toast(err.message, {
     title: "Stock Trader",
