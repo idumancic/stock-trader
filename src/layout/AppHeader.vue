@@ -40,25 +40,24 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import portfolioModule from "@/store/modules/portfolio";
-import stocksModule from "@/store/modules/stocks";
+import { portfolio, stocks } from "@modules";
 
 @Component
 export default class AppHeader extends Vue {
   get funds() {
-    return portfolioModule.funds;
+    return portfolio.funds;
   }
 
   onEndDayClick() {
-    stocksModule.dispatchRandomizeStocks();
+    stocks.dispatchRandomizeStocks();
   }
 
   onSaveDataClick() {
-    portfolioModule.dispatchSave();
+    portfolio.dispatchSave();
   }
 
   onLoadDataClick() {
-    portfolioModule.dispatchLoad();
+    portfolio.dispatchLoad();
   }
 }
 </script>

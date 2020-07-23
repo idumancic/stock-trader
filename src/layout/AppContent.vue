@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
 import { portfolio, global } from "@modules";
@@ -41,21 +41,21 @@ export default class AppContent extends Vue {
     return portfolio.funds;
   }
 
-  beforeLeave(element) {
-    this.prevHeight = getComputedStyle(element).height;
+  beforeLeave(element: HTMLElement) {
+    this.prevHeight = +getComputedStyle(element).height;
   }
 
-  enter(element) {
+  enter(element: HTMLElement) {
     const { height } = getComputedStyle(element);
 
-    element.style.height = this.prevHeight;
+    element.style.height = this.prevHeight.toString();
 
     setTimeout(() => {
       element.style.height = height;
     });
   }
 
-  afterEnter(element) {
+  afterEnter(element: HTMLElement) {
     element.style.height = "auto";
   }
 }
