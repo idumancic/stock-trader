@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
-import HttpClient from "../http-service";
+import { HttpService } from "@/http-service";
 import { global } from "@modules";
 
 declare module "axios" {
@@ -12,7 +12,7 @@ declare module "axios" {
 }
 
 export const HttpInterceptor = function<
-  T extends { new (...args: any[]): HttpClient }
+  T extends { new (...args: any[]): HttpService }
 >(originalConstructor: T) {
   return class extends originalConstructor {
     private requestCounter = 0;

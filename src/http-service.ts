@@ -4,7 +4,7 @@ import axios, {
   AxiosRequestConfig
 } from "axios";
 
-abstract class HttpClient {
+export abstract class HttpService {
   protected readonly instance: AxiosInstance;
   public readonly cancelTokenSource: CancelTokenSource;
   private defaultConfig: AxiosRequestConfig = {
@@ -19,5 +19,3 @@ abstract class HttpClient {
     this.cancelTokenSource = axios.CancelToken.source();
   }
 }
-
-export default HttpClient;

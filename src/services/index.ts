@@ -1,6 +1,6 @@
-import HttpService from "@/http-service";
-import { StockPortfolioData } from "@/types";
+import { HttpService } from "@/http-service";
 import { HttpInterceptor } from "@/decorators/http-interceptor";
+import { StockPortfolioData } from "@/types";
 
 @HttpInterceptor
 class StockTraderService extends HttpService {
