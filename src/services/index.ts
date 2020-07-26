@@ -1,16 +1,20 @@
-import HttpClient from "@/http-client";
+import HttpService from "@/http-service";
 import { StockPortfolioData } from "@/types";
+import { HttpInterceptor } from "@/decorators/http-interceptor";
 
-class StockTraderService extends HttpClient {
-  saveData = (data: StockPortfolioData) =>
-    this.instance.put("data.json", data, {
-      cancelToken: this.cancelToken
+@HttpInterceptor
+class StockTraderService extends HttpService {
+  saveData(data: StockPortfolioData) {
+    return this.instance.put("data.json", data, {
+      cancelToken: this.cancelTokenSource.token
     });
+  }
 
-  loadData = () =>
-    this.instance.get<StockPortfolioData>("data.json", {
-      cancelToken: this.cancelToken
+  loadData() {
+    return this.instance.get<StockPortfolioData>("data.json", {
+      cancelToken: this.cancelTokenSource.token
     });
+  }
 }
 
 export default new StockTraderService();
