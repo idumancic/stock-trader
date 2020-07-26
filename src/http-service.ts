@@ -8,7 +8,7 @@ export abstract class HttpService {
   protected readonly instance: AxiosInstance;
   public readonly cancelTokenSource: CancelTokenSource;
   private defaultConfig: AxiosRequestConfig = {
-    baseURL: "https://stock-trader-61fc7.firebaseio.com/",
+    baseURL: process.env.VUE_APP_API_BASE_URL,
     headers: {
       "Content-Type": "application/json"
     }
